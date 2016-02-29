@@ -7,7 +7,5 @@ Receta::Application.routes.draw do
 
     get 'tag_cards/index'
 
-    get 'tags/index'
-
     resources :tags, only: [:index]
 end
