@@ -8,6 +8,7 @@ require 'rails_helper'
 #       expect(response).to have_http_status(:success)
 #     end
 #   end
+#end
 describe TagsController do
     render_views
     describe "index" do
@@ -51,4 +52,3 @@ describe TagsController do
 
     end
   end
-end

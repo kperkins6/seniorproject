@@ -1,4 +1,4 @@
-Receta::Application.routes.draw do
+Rails.application.routes.draw do
     root 'home#index'
 
     get 'business_cards/index'
