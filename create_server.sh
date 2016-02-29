@@ -93,6 +93,67 @@ read -p "Now, look in the script and follow the directions at 75, then push ente
 # listen_addresses = '*' # To which interface we should bind. '*'
 #                        # makes your PostgreSQL visible to the Internet
 
+
+
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 561F9B9CAC40B2F7
+sudo apt-get install apache2
+
+sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/sp.conf
+sudo nano /etc/apache2/sites-available/sp.conf
+# Put this in that file
+# <VirtualHost *:80>
+#     ServerName 159.203.244.120
+#     ServerAlias 159.203.244.120
+#     ServerAdmin kperkins6@mail.csuchico.edu
+#     DocumentRoot /home/kevin/seniorproject/sp/public
+#     RailsEnv development
+#     ErrorLog ${APACHE_LOG_DIR}/error.log
+#     CustomLog ${APACHE_LOG_DIR}/access.log combined
+#     <Directory "/home/kevin/seniorproject/sp/public">
+#         Options FollowSymLinks
+#         Require all granted
+#     </Directory>
+# </VirtualHost>
+
+read -p "Please view the install script to see what you need to edit in this file" -n 1 -r
+sudo a2dissite 000-default
+sudo a2ensite sp
+sudo service apache2 restart
+
+sudo touch /etc/apt/sources.list.d/passenger.list
+su - echo "deb https://oss-binaries.phusionpassenger.com/apt/passenger trusty main" >>/etc/apt/sources.list.d/passenger.list
+
+sudo chown root: /etc/apt/sources.list.d/passenger.list
+sudo chmod 600 /etc/apt/sources.list.d/passenger.list
+
+sudo apt-get install libapache2-mod-passenger
+sudo a2enmod passenger
+sudo service apache2 restart
+
+sudo rm /usr/bin/ruby
+sudo ln -s /usr/local/bin/ruby /usr/bin/ruby
+
+sudo a2dissite 000-default
+sudo a2ensite sp
+sudo apt-get update && sudo apt-get upgrade
+
+sudo service apache2 restart
+
+echo "asset 'angular-route'" >> Bowerfile
+echo "gem 'angular-rails-templates'" >> Gemfile
+
+bundle install
+rake bower:install
+
+echo "//= require angular-route/angular-route" >> app/assets/javascripts/application.js
+echo "//= require angular-rails-templates" >> app/assets/javascripts/application.js
+echo "<div ng-app="receta">
+  <div class="view-container">
+    <div ng-view class="view-frame animate-view"></div>
+  </div>
+</div>" >> app/views/home/index.html.erb
+
+
 echo "Starting PostgreSQL"
 sudo /etc/init.d/postgresql start
 sudo -u postgres createuser -s kevin
@@ -100,14 +161,13 @@ sudo -u postgres createuser -s kevin
 echo "Now type in: \password [your_username]"
 echo "then type: [your_password] (then confirm)"
 echo "then type: \q (to quit)"
-sudo -u postgres psql
+echo "Congrats! Your server is up and running. Consult the bottom of the install script for configuration of of your rails app"
+
+#sudo -u postgres psql
 # #Then in postgres
 # \password kevin
 # --admin
 # \q
-
-echo "Congrats! Your server is up and running. Consult the bottom of the install script for configuration of of your rails app"
-
 # ---THESE STEPS NEED TO BE MANUALLY COMPLETED---
 # #create your rails server
 # cd
@@ -133,6 +193,30 @@ cd /var/www/html
 rm -f index.html
 touch index.html
 echo "<!-- DOCTYPE html --><html><body>Hello from my running server!</body></html>" >> index.html
+rails generate rspec:install
+sudo apt-get update
+# INSTALL PHANTOMJS FOR TESTING WITH SELENIUM
+sudo aptitude update
+sudo aptitude install build-essential chrpath libssl-dev libxft-dev \
+  libfreetype6 libfreetype6-dev libfontconfig1 libfontconfig1-dev
+PHANTOM_JS="phantomjs-1.9.8-linux-x86_64"
+cd ~
+wget https://bitbucket.org/ariya/phantomjs/downloads/$PHANTOM_JS.tar.bz2
+sudo tar -xvjf $PHANTOM_JS.tar.bz2
+sudo mv $PHANTOM_JS /usr/local/share
+sudo ln -s /usr/local/share/$PHANTOM_JS/bin/phantomjs /usr/local/bin
+phantomjs --version
+#use mocha and chai for testing
+sudo npm install -g mocha chai webdriverjs
+wget http://goo.gl/qTy1IB
+mv qTy1IB selenium
+sudo apt-get install default-jre
+
+# sudo apt-get install firefox
+# sudo apt-get install xvfb
+# sudo Xvfb :10 -ac
+# export DISPLAY=:10
+# firefox
 # -----------------
 # The following are options to change within /etc/postgresql/9.5/main/postgreql.conf
 # listen_addresses = '*' # To which interface we should bind. '*'
