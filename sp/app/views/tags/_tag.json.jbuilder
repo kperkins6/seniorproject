@@ -1,1 +1,1 @@
-json.(tag, :id, :text, :instructions)
+json.(tag, :id, :text, :hits)
