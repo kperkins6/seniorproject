@@ -31,6 +31,8 @@ gem "foreman"
 gem 'therubyracer',  platforms: :ruby
 gem 'devise'
 gem 'pg'
+gem 'teaspoon-jasmine'
+gem 'phantomjs'
 #gem 'selenium-phantomjs'
 
 # Use ActiveModel has_secure_password
