@@ -19,7 +19,7 @@ describe TagsController do
     end
 
     context "when the search finds results" do
-      let(:keywords) { 'Baked Potato w/ Cheese' }
+      let(:keywords) { 'baked' }
       it 'should 200' do
         expect(response.status).to eq(200)
       end
