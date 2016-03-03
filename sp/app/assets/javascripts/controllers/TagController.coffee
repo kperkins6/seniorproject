@@ -20,6 +20,7 @@ controllers.controller("TagController", [ '$scope', '$routeParams', '$resource',
       $scope.tag = {}
 
     $scope.back   = -> $location.path("/")
+
     $scope.edit   = -> $location.path("/tags/#{$scope.tag.id}/edit")
     $scope.cancel = ->
       if $scope.tag.id

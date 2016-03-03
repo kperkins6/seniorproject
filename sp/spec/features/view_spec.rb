@@ -6,7 +6,7 @@ feature "Viewing a tag", js: true do
            hits: "20")
 
     Tag.create!(text: 'Baked Brussel Sprouts',
-           hits: '5')
+           hits: "5")
   end
   scenario "view one tag" do
     visit '/'
