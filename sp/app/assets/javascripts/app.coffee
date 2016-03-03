@@ -1,46 +1,50 @@
-receta = angular.module('receta',[
+sp = angular.module('sp',[
   'templates',
   'ngRoute',
+  'ngResource',
   'controllers',
 ])
 
-receta.config([ '$routeProvider',
+sp.config([ '$routeProvider',
   ($routeProvider)->
     $routeProvider
       .when('/',
         templateUrl: "index.html"
-        controller: 'RecipesController'
+        controller: 'TagsController'
       )
 ])
 
-recipes = [
+tags = [
   {
     id: 1
-    name: 'Baked Potato w/ Cheese'
+    text: 'Baked Potato w/ Cheese'
+    hits: 1
   },
   {
     id: 2
-    name: 'Garlic Mashed Potatoes',
+    text: 'Garlic Mashed Potatoes',
+    hits: 3
   },
   {
     id: 3
-    name: 'Potatoes Au Gratin',
+    text: 'Potatoes Au Gratin',
+    hits: 2
   },
   {
     id: 4
-    name: 'Baked Brussel Sprouts',
+    text: 'Baked Brussel Sprouts',
+    hits: 5
   },
 ]
 
 controllers = angular.module('controllers',[])
-controllers.controller("RecipesController", [ '$scope', '$routeParams', '$location',
+controllers.controller("TagsController", ['$scope', '$routeParams', '$location',
   ($scope,$routeParams,$location)->
-    $scope.search = (keywords)->  $location.path("/").search('keywords',keywords)
+    $scope.search = (keywords)-> $location.path("/").search('keywords',keywords)
 
     if $routeParams.keywords
-      keywords = $routeParams.keywords.toLowerCase()
-      $scope.recipes = recipes.filter (recipe)-> recipe.name.toLowerCase().indexOf(keywords) != -1
+     keywords - $routeParams.keywords.toLowerCase()
+     $scope.tags = tags.filter (tag)-> tag.name.toLowerCase().indexOf(keywords) != -1
     else
-      $scope.recipes = []
+     $scope.tag = []
 ])
-
