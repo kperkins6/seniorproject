@@ -3,6 +3,7 @@
 # Version of your assets, change this if you want to expire all your assets.
 Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.precompile += %w( 
+controllers/TagController.self.js
 templates/show.self.js
 angular-flash/dist/angular-flash.self.js
   controllers/TagsController_spec.self.js
