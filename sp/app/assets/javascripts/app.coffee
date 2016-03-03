@@ -3,6 +3,8 @@ sp = angular.module('sp',[
   'ngRoute',
   'ngResource',
   'controllers',
+  'angular-flash.service',
+  'angular-flash.flash-alert-directive'
 ])
 
 sp.config([ '$routeProvider',
@@ -11,6 +13,9 @@ sp.config([ '$routeProvider',
       .when('/',
         templateUrl: "index.html"
         controller: 'TagsController'
+      ).when('/tags/:tagId',
+        templateUrl: "show.html"
+        controller: 'TagController'
       )
 ])
 
