@@ -42,4 +42,30 @@ describe TagsController do
       end
 
     end
+
+  describe "show" do
+    before do
+      xhr :get, :show, format: :json, id: tag_id
+    end
+
+    subject(:results) { JSON.parse(response.body) }
+
+    context "when the tag exists" do
+      let(:tag) { 
+        Tag.create!(text: 'Baked Potato w/ Cheese', 
+               hits: "20") 
+      }
+      let(:tag_id) { tag.id }
+
+      it { expect(response.status).to eq(200) }
+      it { expect(results["id"]).to eq(tag.id) }
+      it { expect(results["text"]).to eq(tag.text) }
+      it { expect(results["hits"]).to eq(tag.hits) }
+    end
+
+    context "when the tag doesn't exit" do
+      let(:tag_id) { -9999 }
+      it { expect(response.status).to eq(404) }
+    end
   end
+ end
