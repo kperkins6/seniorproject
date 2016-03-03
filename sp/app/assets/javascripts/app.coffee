@@ -1,6 +1,7 @@
 sp = angular.module('sp',[
   'templates',
   'ngRoute',
+  'ngResource',
   'controllers',
 ])
 
@@ -33,8 +34,8 @@ tags = [
 ]
 
 controllers = angular.module('controllers',[])
-controllers.controller("TagsController", [ '$scope', '$routeParams', '$location',
-  ($scope,$routeParams,$location)->
+controllers.controller("TagsController", [ '$scope', '$routeParams', '$location', '$resource',
+  ($scope,$routeParams,$location,$resource)->
     $scope.search = (keywords)->  $location.path("/").search('keywords',keywords)
 
     if $routeParams.keywords
