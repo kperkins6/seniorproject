@@ -4,20 +4,16 @@ describe "TagsController", ->
   location     = null
   routeParams  = null
   resource     = null
-
-  # access injected service later
   httpBackend  = null
 
-  setupController =(keywords)->
+  setupController =(keywords,results)->
     inject(($location, $routeParams, $rootScope, $resource, $httpBackend, $controller)->
       scope       = $rootScope.$new()
       location    = $location
       resource    = $resource
+      httpBackend = $httpBackend
       routeParams = $routeParams
       routeParams.keywords = keywords
-
-      # capture the injected service
-      httpBackend = $httpBackend 
 
       if results
         request = new RegExp("\/tags.*keywords=#{keywords}")
@@ -34,38 +30,38 @@ describe "TagsController", ->
     httpBackend.verifyNoOutstandingExpectation()
     httpBackend.verifyNoOutstandingRequest()
 
-describe 'controller initialization', ->
-  describe 'when no keywords present', ->
-    beforeEach(setupController())
+  describe 'controller initialization', ->
+    describe 'when no keywords present', ->
+      beforeEach(setupController())
+      
+      it 'defaults to no tags', ->
+        expect(scope.tags).toEqualData([])
 
-    it 'defaults to no tags', ->
-      expect(scope.tags).toEqualData([])
+    describe 'with keywords', ->
+      keywords = 'foo'
+      tags = [
+        {
+          id: 2
+          text: 'Baked Potatoes'
+        },
+        {
+          id: 4
+          text: 'Potatoes Au Gratin'
+        }
+      ]
+      beforeEach ->
+        setupController(keywords,tags)
+        httpBackend.flush()
 
-  describe 'with keywords', ->
-    keywords = 'foo'
-    tags = [
-      {
-        id: 2
-        name: 'Baked Potatoes'
-      },
-      {
-        id: 4
-        name: 'Potatoes Au Gratin'
-      }
-    ]
+      it 'calls the back-end', ->
+        expect(scope.tags).toEqualData(tags)
+
+  describe 'search()', ->
     beforeEach ->
-      setupController(keywords,tags)
-      httpBackend.flush()
+      setupController()
 
-    it 'calls the back-end', ->
-      expect(scope.tags).toEqualData(tags)
-
-describe 'search()', ->
-  beforeEach ->
-    setupController()
-
-  it 'redirects to itself with a keyword param', ->
-    keywords = 'foo'
-    scope.search(keywords)
-    expect(location.path()).toBe('/')
-    expect(location.search()).toEqualData({keywords: keywords})
+    it 'redirects to itself with a keyword param', ->
+      keywords = 'foo'
+      scope.search(keywords)
+      expect(location.path()).toBe("/")
+      expect(location.search()).toEqualData({keywords: keywords})
