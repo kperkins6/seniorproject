@@ -7,8 +7,15 @@ sp = angular.module('sp',[
   'angular-flash.flash-alert-directive'
 ])
 
-sp.config([ '$routeProvider',
-  ($routeProvider)->
+sp.config([ '$routeProvider', 'flashProvider',
+  ($routeProvider,flashProvider)->
+    
+    flashProvider.errorClassnames.push("alert-danger")
+    flashProvider.warnClassnames.push("alert-warning")
+    flashProvider.infoClassnames.push("alert-info")
+    flashProvider.successClassnames.push("alert-success")
+
+
     $routeProvider
       .when('/',
         templateUrl: "index.html"
@@ -22,19 +29,23 @@ sp.config([ '$routeProvider',
 tags = [
   {
     id: 1
-    name: 'Baked Potato w/ Cheese'
+    text: 'Baked Potato w/ Cheese'
+    hits: 5
   },
   {
     id: 2
-    name: 'Garlic Mashed Potatoes',
+    text: 'Garlic Mashed Potatoes',
+    hits: 2
   },
   {
     id: 3
-    name: 'Potatoes Au Gratin',
+    text: 'Potatoes Au Gratin',
+    hits: 3
   },
   {
     id: 4
-    name: 'Baked Brussel Sprouts',
+    text: 'Baked Brussel Sprouts',
+    hits: 4
   },
 ]
 

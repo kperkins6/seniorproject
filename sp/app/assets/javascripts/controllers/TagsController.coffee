@@ -11,7 +11,7 @@ controllers.controller("TagsController", [ '$scope', '$routeParams', '$location'
       )
     )
 
-    $scope.view = (tagId)-> $location.path("/recipes/#{tagId}")
+    $scope.view = (tagId)-> $location.path("/tags/#{tagId}")
     $scope.back = -> $location.path("/")
     $scope.search = (keywords)->  $location.path("/").search('keywords',keywords)
 ])
