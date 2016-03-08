@@ -1,7 +1,7 @@
 controllers = angular.module('controllers')
 controllers.controller("TagsController", [ '$scope', '$routeParams', '$location', '$resource',
   ($scope,$routeParams,$location,$resource)->
-    $scope.search = (keywords)->  $location.path("/").search('keywords',keywords)
+    $scope.search = (keywords)->  $location.path("/tags").search('keywords',keywords)
     Tag = $resource('/tags/:tagId', { tagId: "@id", format: 'json' })
 
     if $routeParams.keywords

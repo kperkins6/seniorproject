@@ -31,8 +31,14 @@ sp.config([ '$routeProvider', 'flashProvider',
       ).when('/businesscards',
         templateUrl: "cardsindex.html"
         controller: "BusinessCardsController"
-      ).when(/businesscards/:businesscardId',
+      ).when('/businesscards/:businesscardId',
         templateUrl: "cardshow.html"
+        controller: 'BusinessCardController'
+      ).when('/businesscards/new',
+        templateUrl: "cardsform.html"
+        controller: 'BusinessCardController'
+      ).when('/businesscards/:businesscardId/edit',
+        templateUrl: "cardsform.html"
         controller: 'BusinessCardController'
       )
 ])

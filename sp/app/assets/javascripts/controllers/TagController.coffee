@@ -19,13 +19,13 @@ controllers.controller("TagController", [ '$scope', '$routeParams', '$resource',
     else
       $scope.tag = {}
 
-    $scope.back   = -> $location.path("/")
+    $scope.back   = -> $location.path("/tags")
     $scope.edit   = -> $location.path("/tags/#{$scope.tag.id}/edit")
     $scope.cancel = ->
       if $scope.tag.id
         $location.path("/tags/#{$scope.tag.id}")
       else
-        $location.path("/")
+        $location.path("/tags")
 
     $scope.save = ->
       onError = (_httpResponse)-> flash.error = "Something went wrong"
@@ -42,6 +42,5 @@ controllers.controller("TagController", [ '$scope', '$routeParams', '$resource',
     $scope.delete = ->
       $scope.tag.$delete()
       $scope.back()
-
 
 ])
