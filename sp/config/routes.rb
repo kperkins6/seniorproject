@@ -7,5 +7,5 @@ Rails.application.routes.draw do
 
     get 'tag_cards/index'
 
-    resources :tags, only: [:index, :show]
+    resources :tags, only: [:index, :show, :create, :update, :destroy]
 end

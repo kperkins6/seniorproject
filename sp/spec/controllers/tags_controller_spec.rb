@@ -68,4 +68,41 @@ describe TagsController do
       it { expect(response.status).to eq(404) }
     end
   end
+ 
+ describe "create" do
+    before do
+      xhr :post, :create, format: :json, tag: { text: "Toast", 
+                                           hits: "7" }
+    end
+    it { expect(response.status).to eq(201) }
+    it { expect(Tag.last.text).to eq("Toast") }
+    it { expect(Tag.last.hits).to eq(7) }
+  end
+
+  describe "update" do
+    let(:tag) { 
+      Tag.create!(text: 'Baked Potato w/ Cheese', 
+                     hits: "20") 
+    }
+    before do
+      xhr :put, :update, format: :json, id: tag.id, tag: { text: "Toast", 
+                                                 hits: "7" }
+      tag.reload
+    end
+    it { expect(response.status).to eq(204) }
+    it { expect(tag.text).to eq("Toast") }
+    it { expect(tag.hits).to eq(7) }
+  end
+
+  describe "destroy" do
+    let(:tag_id) { 
+      Tag.create!(text: 'Baked Potato w/ Cheese', 
+                     hits: "20").id
+    }
+    before do
+      xhr :delete, :destroy, format: :json, id: tag_id
+    end
+    it { expect(response.status).to eq(204) }
+    it { expect(Tag.find_by_id(tag_id)).to be_nil }
+  end
  end
