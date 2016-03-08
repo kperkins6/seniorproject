@@ -31,15 +31,27 @@ sp.config([ '$routeProvider', 'flashProvider',
       ).when('/businesscards',
         templateUrl: "cardsindex.html"
         controller: "BusinessCardsController"
-      ).when('/businesscards/:businesscardId',
-        templateUrl: "cardshow.html"
-        controller: 'BusinessCardController'
       ).when('/businesscards/new',
         templateUrl: "cardsform.html"
+        controller: 'BusinessCardController'
+      ).when('/businesscards/:businesscardId',
+        templateUrl: "cardshow.html"
         controller: 'BusinessCardController'
       ).when('/businesscards/:businesscardId/edit',
         templateUrl: "cardsform.html"
         controller: 'BusinessCardController'
+      ).when('/decks',
+        templateUrl: "deckindex.html"
+        controller: 'DecksController'
+      ).when('/decks/new',
+        templateUrl: "deckform.html"
+        controller: 'DeckController'
+      ).when('/decks/:deckId',
+        templateUrl: "deckshow.html"
+        controller: 'DeckController'
+      ).when('/decks/:deckId/edit',
+        templateUrl: "deckform.html"
+        controller: 'DeckController'
       )
 ])
 
