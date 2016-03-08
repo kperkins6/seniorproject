@@ -1,4 +1,7 @@
 class BusinessCardsController < ApplicationController
+  skip_before_filter :verify_authenticity_token
+
+  
   def index
     @businesscards = if params[:keywords]
                  BusinessCard.where('name ilike ?',"%#{params[:keywords]}%")
@@ -12,14 +15,14 @@ class BusinessCardsController < ApplicationController
   end
 
   def create
-    @businesscard = BusinessCard.new(params.require(:businesscard).permit(:name,:address))
+      @businesscard = BusinessCard.new(params.require(:businesscard).permit(:name,:addresses,:linkedin,:facebook,:twitter,:instagram,:pinterest,:user_id))
     @businesscard.save
     render 'show', status: 201
   end
 
   def update
     businesscard = BusinessCard.find(params[:id])
-    businesscard.update_attributes(params.require(:businesscard).permit(:name,:address))
+    businesscard.update_attributes(params.require(:businesscard).permit(:name,:addresses,:linkedin,:facebook,:twitter,:instagram,:pinterest,:user_id))
     head :no_content
   end
 

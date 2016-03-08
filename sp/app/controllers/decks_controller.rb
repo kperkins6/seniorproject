@@ -1,7 +1,9 @@
 class DecksController < ApplicationController
-  def index
+    skip_before_filter :verify_authenticity_token
+
+    def index
       @decks = if params[:keywords]
-          Deck.where('text ilike ?',"%#{params[:keywords]}%")              # Deck.where('text')
+          Deck.where('description ilike ?',"%#{params[:keywords]}%")              # Deck.where('description')
              else
                []
              end

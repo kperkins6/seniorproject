@@ -1,4 +1,4 @@
 rake db:drop
 rake db:create
-rake db:migrate
+RAILS_ENV=development; rake db:migrate
 rake db:seed

@@ -31,7 +31,7 @@ Rails.application.configure do
   # yet still be able to expire them through the digest params.
   config.assets.digest = true
 
-  config.web_console.whitelisted_ips = '73.151.34.253'
+  config.web_console.whitelisted_ips = '132.241.174.158'
   # Adds additional error checking when serving assets at runtime.
   # Checks for improperly declared sprockets dependencies.
   # Raises helpful error messages.

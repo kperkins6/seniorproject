@@ -258,7 +258,18 @@ businesscards = BusinessCard.create(
     { name: "Jan Michael Vincent", addresses: "203 West First Street, Chico CA 95926", pinterest: "f", user_id: 9 },
     { name: "Jan Michael Vincent", addresses: "204 West First Street, Chico CA 95926", pinterest: "f", user_id: 21 },
     { name: "Jan Michael Vincent", addresses: "205 West First Street, Chico CA 95926", pinterest: "f", user_id: 20 },
-    { name: "Jan Michael Vincent", addresses: "206 West First Street, Chico CA 95926", pinterest: "t", user_id: 8 }
+    { name: "Jan Michael Vincent", addresses: "206 West First Street, Chico CA 95926", pinterest: "t", user_id: 8 },
+  ]
+)
+
+decks = Deck.create(
+  [
+                    { description: "CSU Chico Faculty", user_id: 1},
+                    { description: "CSU Chico Friends", user_id: 1},
+                    { description: "CSU Chico Colleagues", user_id: 1},
+                    { description: "CSU Chico Advisors", user_id: 1},
+                    { description: "Chico Local Network", user_id: 1},
+                    { description: "Bay Area Professional Network", user_id: 1},
   ]
 )
 

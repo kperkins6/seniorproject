@@ -43,5 +43,4 @@ controllers.controller("BusinessCardController", [ '$scope', '$routeParams', '$r
       $scope.businesscard.$delete()
       $scope.back()
 
-
 ])

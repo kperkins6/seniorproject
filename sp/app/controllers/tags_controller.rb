@@ -13,14 +13,14 @@ class TagsController < ApplicationController
   end
 
   def create
-    @tag = Tag.new(params.require(:tag).permit(:text,:hits))
+    @tag = Tag.new(params.require(:tag).permit(:text,:hits,:user_id,:businesscard_id))
     @tag.save
     render 'show', status: 201
   end
 
   def update
     tag = Tag.find(params[:id])
-    tag.update_attributes(params.require(:tag).permit(:text,:hits))
+    tag.update_attributes(params.require(:tag).permit(:text,:hits,:user_id,:businesscard_id))
     head :no_content
   end
 

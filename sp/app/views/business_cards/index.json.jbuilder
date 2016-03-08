@@ -1,2 +1,1 @@
-json.array! @recipes, partial: 'businesscard', as: :businesscard
-
+json.array! @businesscards, partial: 'businesscard', as: :businesscard
