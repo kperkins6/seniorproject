@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
-    root 'home#index'
+  devise_for :users
+  resources :users do
+    resources :decks do
+      resources :business_cards do
+        resources :tags
+      end
+    end
+  end
 
-    get 'business_cards/index'
+  root 'home#index'
 
-    get 'decks/index'
-
-    get 'tag_cards/index'
-
-    resources :tags, only: [:index, :show, :create, :update, :destroy]
 end
