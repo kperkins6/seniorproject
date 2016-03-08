@@ -7,8 +7,7 @@ class CreateBusinessCards < ActiveRecord::Migration
       t.string :twitter
       t.string :instagram
       t.string :pinterest
-      t.string :first_name
-      t.string :last_name
+      t.string :name
       t.integer :user_id
 
       t.timestamps null: false
