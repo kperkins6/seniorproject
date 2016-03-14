@@ -28,18 +28,18 @@ sp.config([ '$routeProvider', 'flashProvider',
       ).when('/tags/:tagId/edit',
         templateUrl: "form.html"
         controller: 'TagController'
-      ).when('/businesscards',
+      ).when('/bcards',
         templateUrl: "cardsindex.html"
-        controller: "BusinessCardsController"
-      ).when('/businesscards/new',
+        controller: "BcardsController"
+      ).when('/bcards/new',
         templateUrl: "cardsform.html"
-        controller: 'BusinessCardController'
-      ).when('/businesscards/:businesscardId',
+        controller: 'BcardController'
+      ).when('/bcards/:bcardId',
         templateUrl: "cardshow.html"
-        controller: 'BusinessCardController'
-      ).when('/businesscards/:businesscardId/edit',
+        controller: 'BcardController'
+      ).when('/bcards/:bcardId/edit',
         templateUrl: "cardsform.html"
-        controller: 'BusinessCardController'
+        controller: 'BcardController'
       ).when('/decks',
         templateUrl: "deckindex.html"
         controller: 'DecksController'

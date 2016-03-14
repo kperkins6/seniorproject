@@ -1,5 +1,4 @@
-class TagCard < ActiveRecord::Base
+class Tagcard < ActiveRecord::Base
     belongs_to :user
     belongs_to :businesscard
-    has_many :tags
 end
