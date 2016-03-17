@@ -7,5 +7,6 @@ Rails.application.routes.draw do
   resources :decks
   resources :businesscards
   resources :tags
+  resources :tagcards
   root 'home#index'
 end
