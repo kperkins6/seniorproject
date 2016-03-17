@@ -1,0 +1,81 @@
+<aside class="flash row">
+  <article flash-alert duration="0" active-class="alert" class="col-md-6 col-md-offset-3">
+    {{flash.message}}
+  </article>
+</aside>
+<form class="form-horizontal" role="form" class="edit-user">
+  <div class="form-group" ng-class="{'has-warning has-feedback':errors.name}">
+    <label
+      for="text"
+      class="col-md-2 control-label col-md-offset-2">
+      Name
+    </label>
+    <div class="col-md-5">
+      <input type="text" name="name" class="form-control" placeholder="e.g. John Doe" ng-model="bcard.name">
+    </div>
+  </div>
+  <div class="form-group" ng-class="{'has-warning has-feedback':errors.name}">
+    <label
+      for="address"
+      class="col-md-2 control-label col-md-offset-2">
+      Address
+    </label>
+    <div class="col-md-5">
+      <!-- <textarea name="address" class="form-control" ng-model='bcard.address' placeholder="20 East 1st St. Chico CA 95926">
+      </textarea> -->
+      <input type="text" name="address" class="form-control" ng-model='bcard.address' placeholder="20 East 1st St. Chico CA 95926">
+    </div>
+  </div>
+  <!-- <div class="form-group" ng-class="{'has-warning has-feedback':errors.name}">
+    <label
+      for="linkedin"
+      class="col-md-2 control-label col-md-offset-2">
+      linkedIn
+    </label>
+    <div class="col-md-5">
+      <textarea name="linkedin" class="form-control" ng-model='bcard.linkedin' placeholder="linkedin.com/johndoe">
+      </textarea>
+    </div>
+  </div>
+  <div class="form-group" ng-class="{'has-warning has-feedback':errors.name}">
+    <label
+      for="facebook"
+      class="col-md-2 control-label col-md-offset-2">
+      Facebook
+    </label>
+    <div class="col-md-5">
+      <textarea name="facebook" class="form-control" ng-model='bcard.facebook' placeholder="facebook.com/johndoe">
+      </textarea>
+    </div>
+  </div>
+  <div class="form-group" ng-class="{'has-warning has-feedback':errors.name}">
+    <label
+      for="twitter"
+      class="col-md-2 control-label col-md-offset-2">
+      Twitter
+    </label>
+    <div class="col-md-5">
+      <textarea name="twitter" class="form-control" ng-model='bcard.twitter' placeholder="twitter.com/johndoe">
+      </textarea>
+    </div>
+  </div>
+  <div class="form-group" ng-class="{'has-warning has-feedback':errors.name}">
+    <label
+      for="instagram"
+      class="col-md-2 control-label col-md-offset-2">
+      Instagram
+    </label>
+    <div class="col-md-5">
+      <textarea name="instagram" class="form-control" ng-model='bcard.instagram' placeholder="instagram.com/johndoe">
+      </textarea>
+    </div>
+  </div> -->
+  <div class="form-group">
+    <div class="col-md-offset-2 col-md-3">
+      <button class="btn btn-default" ng-click="cancel()"> Cancel</button>
+    </div>
+    <div class="col-md-4 text-right">
+      <button class="btn btn-primary" ng-click="save()"> Save </button>
+    </div>
+  </div>
+</section>

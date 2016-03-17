@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
-    root 'home#index'
-
-    get 'business_cards/index'
-
-    get 'decks/index'
-
-    get 'tag_cards/index'
-
-    resources :tags, only: [:index]
+  resources :bcards
+  devise_for :users, controllers: {
+    sessions: 'users/sessions'
+  }
+  resources :users
+  resources :decks
+  resources :businesscards
+  resources :tags
+  root 'home#index'
 end

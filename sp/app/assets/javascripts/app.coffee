@@ -3,45 +3,56 @@ sp = angular.module('sp',[
   'ngRoute',
   'ngResource',
   'controllers',
+  'angular-flash.service',
+  'angular-flash.flash-alert-directive'
 ])
 
-sp.config([ '$routeProvider',
-  ($routeProvider)->
+sp.config([ '$routeProvider', 'flashProvider',
+  ($routeProvider,flashProvider)->
+
+    flashProvider.errorClassnames.push("alert-danger")
+    flashProvider.warnClassnames.push("alert-warning")
+    flashProvider.infoClassnames.push("alert-info")
+    flashProvider.successClassnames.push("alert-success")
+
     $routeProvider
-      .when('/',
+      .when('/tags',
         templateUrl: "index.html"
         controller: 'TagsController'
+      ).when('/tags/new',
+        templateUrl: "form.html"
+        controller: 'TagController'
+      ).when('/tags/:tagId',
+        templateUrl: "show.html"
+        controller: 'TagController'
+      ).when('/tags/:tagId/edit',
+        templateUrl: "form.html"
+        controller: 'TagController'
+      ).when('/bcards',
+        templateUrl: "cardsindex.html"
+        controller: "BcardsController"
+      ).when('/bcards/new',
+        templateUrl: "cardsform.html"
+        controller: 'BcardController'
+      ).when('/bcards/:bcardId',
+        templateUrl: "cardshow.html"
+        controller: 'BcardController'
+      ).when('/bcards/:bcardId/edit',
+        templateUrl: "cardsform.html"
+        controller: 'BcardController'
+      ).when('/decks',
+        templateUrl: "deckindex.html"
+        controller: 'DecksController'
+      ).when('/decks/new',
+        templateUrl: "deckform.html"
+        controller: 'DeckController'
+      ).when('/decks/:deckId',
+        templateUrl: "deckshow.html"
+        controller: 'DeckController'
+      ).when('/decks/:deckId/edit',
+        templateUrl: "deckform.html"
+        controller: 'DeckController'
       )
 ])
 
-tags = [
-  {
-    id: 1
-    name: 'Baked Potato w/ Cheese'
-  },
-  {
-    id: 2
-    name: 'Garlic Mashed Potatoes',
-  },
-  {
-    id: 3
-    name: 'Potatoes Au Gratin',
-  },
-  {
-    id: 4
-    name: 'Baked Brussel Sprouts',
-  },
-]
-
 controllers = angular.module('controllers',[])
-controllers.controller("TagsController", [ '$scope', '$routeParams', '$location', '$resource',
-  ($scope,$routeParams,$location,$resource)->
-    $scope.search = (keywords)->  $location.path("/").search('keywords',keywords)
-
-    if $routeParams.keywords
-      keywords = $routeParams.keywords.toLowerCase()
-      $scope.tags = tags.filter (tag)-> tag.name.toLowerCase().indexOf(keywords) != -1
-    else
-      $scope.tags = []
-])
-

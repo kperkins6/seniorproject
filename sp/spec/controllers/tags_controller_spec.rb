@@ -1,14 +1,5 @@
 require 'rails_helper'
 
-# RSpec.describe TagsController, type: :controller do
-#
-#   describe "GET #index" do
-#     it "returns http success" do
-#       get :index
-#       expect(response).to have_http_status(:success)
-#     end
-#   end
-#end
 describe TagsController do
     render_views
     describe "index" do
@@ -51,4 +42,67 @@ describe TagsController do
       end
 
     end
+
+  describe "show" do
+    before do
+      xhr :get, :show, format: :json, id: tag_id
+    end
+
+    subject(:results) { JSON.parse(response.body) }
+
+    context "when the tag exists" do
+      let(:tag) { 
+        Tag.create!(text: 'Baked Potato w/ Cheese', 
+               hits: "20") 
+      }
+      let(:tag_id) { tag.id }
+
+      it { expect(response.status).to eq(200) }
+      it { expect(results["id"]).to eq(tag.id) }
+      it { expect(results["text"]).to eq(tag.text) }
+      it { expect(results["hits"]).to eq(tag.hits) }
+    end
+
+    context "when the tag doesn't exit" do
+      let(:tag_id) { -9999 }
+      it { expect(response.status).to eq(404) }
+    end
   end
+ 
+ describe "create" do
+    before do
+      xhr :post, :create, format: :json, tag: { text: "Toast", 
+                                           hits: "7" }
+    end
+    it { expect(response.status).to eq(201) }
+    it { expect(Tag.last.text).to eq("Toast") }
+    it { expect(Tag.last.hits).to eq(7) }
+  end
+
+  describe "update" do
+    let(:tag) { 
+      Tag.create!(text: 'Baked Potato w/ Cheese', 
+                     hits: "20") 
+    }
+    before do
+      xhr :put, :update, format: :json, id: tag.id, tag: { text: "Toast", 
+                                                 hits: "7" }
+      tag.reload
+    end
+    it { expect(response.status).to eq(204) }
+    it { expect(tag.text).to eq("Toast") }
+    it { expect(tag.hits).to eq(7) }
+  end
+
+  describe "destroy" do
+    let(:tag_id) { 
+      Tag.create!(text: 'Baked Potato w/ Cheese', 
+                     hits: "20").id
+    }
+    before do
+      xhr :delete, :destroy, format: :json, id: tag_id
+    end
+    it { expect(response.status).to eq(204) }
+    it { expect(Tag.find_by_id(tag_id)).to be_nil }
+  end
+ end

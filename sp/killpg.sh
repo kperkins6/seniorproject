@@ -1,0 +1,2 @@
+sudo pkill -u postgres
+

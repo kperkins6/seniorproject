@@ -1,0 +1,50 @@
+<h1>Bcards#index</h1>
+<p>Find me in app/views/bcards/index.html.erb</p>
+<div ng-app="sp">
+  <div class="view-container">
+    <div ng-view="" class="view-frame animate-view"></div>
+  </div>
+  <p id="notice">
+    <%= notice %>
+  </p>
+
+  <h1>Listing Bcards</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Listing Bcards</th>
+        <th colspan="1"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @bcards.each do |bcard| %>
+      <tr>
+        <td>
+          <%= bcard.id %>
+        </td>
+        <td>
+          <%= bcard.text %>
+        </td>
+        <td>
+          <%= bcard.hits %>
+        </td>
+        <td>
+          <%= link_to 'Show', bcard %>
+        </td>
+        <td>
+          <%= link_to 'Edit', edit_bcard_path(bcard) %>
+        </td>
+        <td>
+          <%= link_to 'Destroy', bcard, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+
+    <%= link_to 'New Bcard', new_bcard_path %>
+  </div>
