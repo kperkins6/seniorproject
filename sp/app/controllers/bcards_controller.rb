@@ -10,7 +10,7 @@ class BcardsController < ApplicationController
 end
 def show
     @bcard = Bcard.find(params[:id])
-    @tags = Tag.find_by(user_id: current_user.id)
+	@tags = TagCard.find_by(user_id: current_user.id, bcard_id: @bcard.id).tags
 end
 
 def create
