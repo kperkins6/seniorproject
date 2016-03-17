@@ -16,16 +16,16 @@ sp.config([ '$routeProvider', 'flashProvider',
     flashProvider.successClassnames.push("alert-success")
 
     $routeProvider
-      .when('/tags',
+      .when('/bcards/:bcardId/tags',
         templateUrl: "index.html"
         controller: 'TagsController'
-      ).when('/tags/new',
+      ).when('/bcards/:bcardId/tags/new',
         templateUrl: "form.html"
         controller: 'TagController'
-      ).when('/tags/:tagId',
+      ).when('/bcards/:bcardId/tags/:tagId',
         templateUrl: "show.html"
         controller: 'TagController'
-      ).when('/tags/:tagId/edit',
+      ).when('/bcards/:bcardId/tags/:tagId/edit',
         templateUrl: "form.html"
         controller: 'TagController'
       ).when('/bcards',
