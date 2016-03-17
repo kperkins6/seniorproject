@@ -10,7 +10,7 @@ class BcardsController < ApplicationController
 end
 def show
     @bcard = Bcard.find(params[:id])
-	@tagcard = Tagcard.find_by(user_id: current_user.id, bcard_id: @bcard.id).first_or_initialize
+	@tagcard = Tagcard.find('1')
 	@tags = @tagcard.tags
 	if @tags == []
 		@tags << Tag.find_by(text: "Create some tags!")
