@@ -9,6 +9,10 @@
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script src="/bower_components/angular/angular.js"></script>
+  <script src="/bower_components/ui-router/release/angular-ui-router.js"></script>
+  <script src="/bower_components/angular-devise/lib/devise.js"></script>
+  <script src="/app.js"></script>
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -33,16 +37,10 @@
             <li><a href="/#/tags">Tags</a></li>
             <li><a href="/#/bcards">My Card</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="http://104.131.129.214/">Back to Profile</a></li>
+            <li><a href="/#/">Back to Profile</a></li>
           </ul>
         </li>
       </ul>
-      <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <input ng-model="keywords" name="keywords" type="text" autofocus class="form-control" placeholder="Tag text, e.g. Baked Potato">
-        </div>
-        <button ng-click="search(keywords)" class="btn btn-default">Submit</button>
-      </form>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="/img/#my_images">Study Tool</a></li>
         <li class="dropdown">
