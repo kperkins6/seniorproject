@@ -13,14 +13,14 @@ class DecksController < ApplicationController
   end
 
   def create
-    @deck = Deck.new(params.require(:deck).permit(:description,:user_id))
+    @deck = Deck.new(params.require(:deck).permit(:name, :description, :user_id))
     @deck.save
     render 'show', status: 201
   end
 
   def update
     deck = Deck.find(params[:id])
-    deck.update_attributes(params.require(:deck).permit(:description,:user_id))
+    deck.update_attributes(params.require(:deck).permit( :name, :description, :tagcards))
     head :no_content
   end
 

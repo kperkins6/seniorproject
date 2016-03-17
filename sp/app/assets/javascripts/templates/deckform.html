@@ -8,20 +8,20 @@
     <label
       for="text"
       class="col-md-2 control-label col-md-offset-2">
-      Description
+      Name
     </label>
     <div class="col-md-5">
-      <input type="text" name="description" class="form-control" placeholder="e.g. CSUC Faculty" ng-model="deck.description">
+      <input type="text" name="name" class="form-control" placeholder="CSUC Faculty" ng-model='deck.name'>
     </div>
   </div>
   <div class="form-group" ng-class="{'has-warning has-feedback':errors.name}">
     <label
-      for="hits"
+      for="Description"
       class="col-md-2 control-label col-md-offset-2">
-      User_id
+      Description
     </label>
     <div class="col-md-5">
-      <textarea name="user_id" class="form-control" ng-model='deck.user_id' placeholder="1">
+      <textarea name="description" class="form-control" placeholder="e.g. Teachers at California State University, Chico" ng-model="deck.description">
       </textarea>
     </div>
   </div>

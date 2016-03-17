@@ -1,1 +1,1 @@
-json.(deck, :id, :description, :user_id)
+json.(deck, :id, :name, :description, :user_id, :tagcards)
