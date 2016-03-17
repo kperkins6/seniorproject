@@ -285,6 +285,7 @@ users.each do |user|
 end
 
 decks = Deck.all
+Tag.create(text: "Create some tags!", hits: 0)
 
 #Assign business cards to decks
 bcards.each do |bcard|
