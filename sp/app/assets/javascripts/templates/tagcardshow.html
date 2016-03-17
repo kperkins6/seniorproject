@@ -5,9 +5,9 @@
 </aside>
 <section class="col-md-6 col-md-offset-3">
   <article class="panel panel-info">
-    <header class="panel-heading"><h1>{{bcard.name}}</h1></header>
+    <header class="panel-heading"><h1>{{tagcard.user_id}}</h1></header>
     <p class="panel-body">
-      {{bcard.address}}
+      {{tagcard.bcard_id}}
     </p>
   </article>
   <section>
@@ -17,22 +17,9 @@
       </button>
     </div>
     <div class="col-md-9 text-right">
-      <button ng-click="/#/bcards/:bcardId/tags">Add Tags</a>  
+      <button ng-click="/#/tagcards/:tagcardId/tags">Add Tags</a>  
       <button ng-click="edit()" class="btn btn-info"> Edit </button>
       <button ng-click="delete()" class="btn btn-danger"> Delete </button>
     </div>
   </section>
-</section>
-<section class="row" ng-if="tags">
-    <h1 class="text-center h2">Tags</h1>
-    <ul class="list-unstyled">
-        <li ng-repeat="tag in tags">
-            <section class="well col-md-6 col-md-offset-3">
-                <h1 class="h3 col-md-6 text-right" style="margin-top: 0"><a href ng-click="view(tag.id)">{{tag.text}}</a></h1>
-                <div class="col-md-6">
-                    <button ng-click="edit(tag.id)" class="btn btn-info">Edit</button>
-                </div>
-            </section>
-        </li>
-    </ul>
 </section>
