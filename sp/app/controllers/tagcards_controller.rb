@@ -3,7 +3,7 @@ class TagcardsController < ApplicationController
 
   def index
       @tagcards = if params[:keywords]
-          Tagcard.where('user_id ilike ?',"%#{params[:keywords]}%")              # Tagcard.where('text')
+          Tagcard.where(user_id: "%#{params[:keywords]}%")              # Tagcard.where('text')
              else
                []
              end
