@@ -1,1 +1,1 @@
-json.array! @tagcardss, partial: 'tagcard', as: :tagcard
+json.array! @tagcards, partial: 'tagcard', as: :tagcard
