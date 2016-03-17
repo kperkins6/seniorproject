@@ -52,6 +52,18 @@ sp.config([ '$routeProvider', 'flashProvider',
       ).when('/decks/:deckId/edit',
         templateUrl: "deckform.html"
         controller: 'DeckController'
+      ).when('/tagcards',
+        templateUrl: "cardsindex.html"
+        controller: "TagcardsController"
+      ).when('/tagcards/new',
+        templateUrl: "cardsform.html"
+        controller: 'TagcardController'
+      ).when('/tagcards/:tagcardId',
+        templateUrl: "cardshow.html"
+        controller: 'TagcardController'
+      ).when('/tagcards/:tagcardId/edit',
+        templateUrl: "cardsform.html"
+        controller: 'TagcardController'
       )
 ])
 
