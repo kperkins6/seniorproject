@@ -1,5 +1,5 @@
 class BcardsController < ApplicationController
-	before_action :authenticate_user!
+
     def index
         @bcards = if params[:keywords]
         Bcard.where('name ilike ?',"%#{params[:keywords]}%")              # Bcard.where('description')
@@ -9,7 +9,7 @@ class BcardsController < ApplicationController
 end
 def show
     @bcard = Bcard.find(params[:id])
-	@tagcard = Tagcard.find(user_id: current_user.id)
+	@tagcard = Tagcard.find(user_id: User.current.id)
 	@tags = @tagcard.tags
 	if @tags == []
 		@tags << Tag.find_by(text: "Create some tags!")
