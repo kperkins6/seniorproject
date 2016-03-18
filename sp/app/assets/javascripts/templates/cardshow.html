@@ -23,6 +23,17 @@
     </div>
   </section>
 </section>
+<section class="row" ng-if="tagcard">
+  <h1 class="text-center h2">TagCard</h1>
+  <section class="well col-md-6 col-md-offset-3">
+    <h1 class="h3 col-md-6 text-right" style="margin-top: 0">
+      <a href="" ng-click="view(tagcard.id)">{{tagcard.bcard_id}}</a>
+    </h1>
+    <div class="col-md-6">
+      <button ng-click="edit(tagcard.id)" class="btn btn-info">Edit</button>
+    </div>
+  </section>
+</section>
 <section class="row" ng-if="tags">
     <h1 class="text-center h2">Tags</h1>
     <ul class="list-unstyled">
