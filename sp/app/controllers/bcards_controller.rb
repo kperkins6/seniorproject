@@ -1,5 +1,5 @@
 class BcardsController < ApplicationController
-
+	before_action :authenticate_user!
     def index
         @bcards = if params[:keywords]
         Bcard.where('name ilike ?',"%#{params[:keywords]}%")              # Bcard.where('description')
